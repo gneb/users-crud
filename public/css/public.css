@@ -43,7 +43,6 @@ body {
 }
 .table-title .btn i {
     float: left;
-    font-size: 21px;
     margin-right: 5px;
 }
 .table-title .btn span {
@@ -75,7 +74,6 @@ table.table th i {
 }
 table.table td:last-child i {
     opacity: 0.9;
-    font-size: 22px;
     margin: 0 5px;
 }
 table.table td a {
@@ -93,9 +91,6 @@ table.table td a.edit {
 }
 table.table td a.delete {
     color: #f44336;
-}
-table.table td i {
-    font-size: 19px;
 }
 table.table .avatar {
     border-radius: 50%;
