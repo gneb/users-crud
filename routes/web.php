@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\AdminController;
+use App\Http\Controllers\AuthController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,3 +17,6 @@ use App\Http\Controllers\PublicController;
 */
 
 Route::get('/', [PublicController::class, 'show']);
+Route::get('/admin', [AdminController::class, 'show'])->middleware('auth')->name('admin');
+Route::get('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
