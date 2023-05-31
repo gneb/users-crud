@@ -1,4 +1,4 @@
-@extends('layouts.public.master')
+@extends('layouts.public.layout')
 
 @section('content')
     <div class="card mx-auto">
