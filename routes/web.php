@@ -17,6 +17,9 @@ use App\Http\Controllers\AuthController;
 */
 
 Route::get('/', [PublicController::class, 'show']);
-Route::get('/admin', [AdminController::class, 'show'])->middleware('auth')->name('admin');
 Route::get('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin', [AdminController::class, 'show'])->middleware('auth')->name('admin');
+ });
