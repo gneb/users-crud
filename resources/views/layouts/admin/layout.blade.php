@@ -11,8 +11,9 @@
     </head>
     <body>
         @include('partials.admin.header')
-        <div class="container-xl">@yield('content')</div>
-
+        <div class="container-xl">
+            @include('partials.public.header_message') @yield('content')
+        </div>
         @include('partials.admin.footer') @include('partials.admin.scripts')
 
         <script>
