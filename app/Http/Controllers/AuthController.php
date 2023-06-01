@@ -28,4 +28,18 @@ class AuthController extends Controller
             'username' => 'Wrong credentials.',
         ])->onlyInput('username');
     }
+    public function logout(Request $request): RedirectResponse
+    {
+        if(csrf_token() != $request->query('csrf')){
+            return back();
+        }
+
+        Auth::logout();
+     
+        $request->session()->invalidate();
+     
+        $request->session()->regenerateToken();
+     
+        return redirect('/');
+    }
 }

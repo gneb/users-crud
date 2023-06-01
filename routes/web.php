@@ -16,10 +16,14 @@ use App\Http\Controllers\AuthController;
 |
 */
 
-Route::get('/', [PublicController::class, 'show']);
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
+Route::get('/', [PublicController::class, 'show'])->name('home');
 
-Route::group(['middleware' => ['admin']], function () {
-    Route::get('/admin', [AdminController::class, 'show'])->middleware('auth')->name('admin');
+Route::group(['middleware' => ['guest']], function () {
+    Route::get('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
  });
+
+Route::group(['middleware' => ['admin', 'auth']], function () {
+    Route::get('/admin', [AdminController::class, 'show'])->name('admin');
+    Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+});

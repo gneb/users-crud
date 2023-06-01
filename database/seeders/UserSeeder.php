@@ -23,7 +23,7 @@ class UserSeeder extends Seeder
             'last_name' => Str::random(10),
             'username' => 'admin',
             'is_admin' => true,
-            'age' => 30,
+            'birth_date' => '1993-03-08',
             'password' => Hash::make('admin'),
         ]);
 

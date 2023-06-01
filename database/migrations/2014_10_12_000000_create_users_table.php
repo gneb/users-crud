@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('first_name', 255);
             $table->string('last_name', 255);
-            $table->integer('age')->unsigned()->nullable();
+            $table->date('birth_date')->nullable();
             $table->string('username', 15)->unique();
             $table->string('password');
             $table->boolean('is_admin')->default(0);

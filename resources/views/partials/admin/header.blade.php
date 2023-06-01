@@ -11,6 +11,7 @@
         </ul>
 
         <div class="col-md-3 text-end">
+            @guest
             <a
                 type="button"
                 href="{{ url('/login') }}"
@@ -18,6 +19,7 @@
             >
                 Login
             </a>
-        </div>
+            @endguest @auth hello, <b>{{Auth::user()->username}} <a class="text-danger" href="{{url('logout?csrf=' . csrf_token())}}">logout</a>@endauth
+            </div></b>
     </header>
 </div>

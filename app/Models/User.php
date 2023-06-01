@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Carbon\Carbon;
 
 class User extends Authenticatable
 {
@@ -21,9 +22,10 @@ class User extends Authenticatable
         'first_name',
         'last_name',
         'username',
-        'age',
+        'birth_date',
         'password',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -42,5 +44,11 @@ class User extends Authenticatable
      */
     protected $casts = [
         'password' => 'hashed',
+        'age' => 'date'
     ];
+
+    public function getAgeAttribute()
+    {
+    return Carbon::parse($this->attributes['birth_date'])->age;
+    }
 }

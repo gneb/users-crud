@@ -4,7 +4,7 @@
         <div class="table-title">
             <div class="row">
                 <div class="col-sm-6">
-                    <h2>Manage <b>Employees</b></h2>
+                    <h2>Manage <b>Users</b></h2>
                 </div>
                 <div class="col-sm-6">
                     <a
@@ -41,13 +41,14 @@
                             <label for="selectAll"></label>
                         </span>
                     </th>
-                    <th>Name</th>
-                    <th>Lastname</th>
+                    <th>First name</th>
+                    <th>Last name</th>
                     <th>Age</th>
                     <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
+                @foreach ($users as $user)
                 <tr>
                     <td>
                         <span class="custom-checkbox">
@@ -60,9 +61,9 @@
                             <label for="checkbox1"></label>
                         </span>
                     </td>
-                    <td>Thomas Hardy</td>
-                    <td>thomashardy@mail.com</td>
-                    <td>(171) 555-2222</td>
+                    <td>{{$user->first_name}}</td>
+                    <td>{{$user->last_name}}</td>
+                    <td>{{$user->age}}</td>
                     <td>
                         <a
                             href="#viewEmployeeModal"
@@ -102,26 +103,10 @@
                         ></a>
                     </td>
                 </tr>
+                @endforeach
             </tbody>
         </table>
-        <div class="clearfix">
-            <div class="hint-text">
-                Showing <b>5</b> out of <b>25</b> entries
-            </div>
-            <ul class="pagination">
-                <li class="page-item disabled"><a href="#">Previous</a></li>
-                <li class="page-item"><a href="#" class="page-link">1</a></li>
-                <li class="page-item"><a href="#" class="page-link">2</a></li>
-                <li class="page-item active">
-                    <a href="#" class="page-link">3</a>
-                </li>
-                <li class="page-item"><a href="#" class="page-link">4</a></li>
-                <li class="page-item"><a href="#" class="page-link">5</a></li>
-                <li class="page-item">
-                    <a href="#" class="page-link">Next</a>
-                </li>
-            </ul>
-        </div>
+        <div class="clearfix">{!! $users->links() !!}</div>
     </div>
     <div class="table-responsive"></div>
 
