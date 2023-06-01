@@ -22,7 +22,10 @@ class AuthController extends Controller
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
-            return redirect()->intended('admin');
+            if(Auth::user()->is_admin == 1){
+                return redirect()->intended('admin');
+            }
+            return redirect()->route('home');
         }
         return back()->withErrors([
             'username' => 'Wrong credentials.',
@@ -33,13 +36,10 @@ class AuthController extends Controller
         if(csrf_token() != $request->query('csrf')){
             return back();
         }
-
         Auth::logout();
-     
         $request->session()->invalidate();
-     
         $request->session()->regenerateToken();
      
-        return redirect('/');
+        return redirect()->route('home');
     }
 }
