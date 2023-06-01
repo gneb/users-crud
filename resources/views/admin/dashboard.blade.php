@@ -41,6 +41,7 @@
                             <label for="selectAll"></label>
                         </span>
                     </th>
+                    <th>#</th>
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Age</th>
@@ -61,26 +62,29 @@
                             <label for="checkbox1"></label>
                         </span>
                     </td>
+                    <td>{{$user->id}}</td>
                     <td>{{$user->first_name}}</td>
                     <td>{{$user->last_name}}</td>
                     <td>{{$user->age}}</td>
                     <td>
                         <a
-                            href="#viewEmployeeModal"
                             class="add"
-                            data-toggle="modal"
+                            data-bs-toggle="modal"
+                            data-bs-target="#viewUserModal{{$user->id}}"
+                            role="button"
                             ><i
                                 class="fa fa-eye fa-1x"
                                 aria-hidden="true"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="auto"
-                                data-bs-title="Add new user"
+                                data-bs-title="View user"
                             ></i
                         ></a>
                         <a
-                            href="#editEmployeeModal"
+                            data-bs-toggle="modal"
+                            data-bs-target="#editEmployeeModal{{$user->id}}"
+                            role="button"
                             class="edit"
-                            data-toggle="modal"
                             ><i
                                 class="fa fa-pencil fa-1x"
                                 aria-hidden="true"
@@ -103,6 +107,110 @@
                         ></a>
                     </td>
                 </tr>
+                <div
+                    class="modal fade"
+                    id="viewUserModal{{$user->id}}"
+                    tabindex="-1"
+                    aria-labelledby="viewUserModal{{$user->id}}Label"
+                    aria-hidden="true"
+                >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <button
+                                    type="button"
+                                    class="btn-close"
+                                    data-bs-dismiss="modal"
+                                    aria-label="Close"
+                                ></button>
+                            </div>
+                            <div class="modal-body">
+                                @include('partials.public.user_card', ['user' =>
+                                $user])
+                            </div>
+                            <div class="modal-footer">
+                                <button
+                                    type="button"
+                                    class="btn btn-outline-secondary"
+                                    data-bs-dismiss="modal"
+                                >
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div
+                    id="editEmployeeModal{{$user->id}}"
+                    class="modal fade"
+                    aria-labelledby="editEmployeeModal{{$user->id}}Label"
+                    aria-hidden="true"
+                    tabindex="-1"
+                >
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <form>
+                                <div class="modal-header">
+                                    <h4 class="modal-title">
+                                        Edit User: {{$user->username}}
+                                    </h4>
+                                    <button
+                                        type="button"
+                                        class="btn-close"
+                                        data-bs-dismiss="modal"
+                                        aria-label="Close"
+                                    ></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Email</label>
+                                        <input
+                                            type="email"
+                                            class="form-control"
+                                            required
+                                        />
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Address</label>
+                                        <textarea
+                                            class="form-control"
+                                            required
+                                        ></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Phone</label>
+                                        <input
+                                            type="text"
+                                            class="form-control"
+                                            required
+                                        />
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <input
+                                        type="button"
+                                        class="btn btn-default"
+                                        data-dismiss="modal"
+                                        value="Cancel"
+                                    />
+                                    <input
+                                        type="submit"
+                                        class="btn btn-success"
+                                        value="Save"
+                                    />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
                 @endforeach
             </tbody>
         </table>
@@ -132,89 +240,21 @@
                     ></button>
                 </div>
                 <div class="modal-body">
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input type="text" class="form-control" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" required />
-                    </div>
-                    <div class="form-group">
-                        <label>Address</label>
-                        <textarea class="form-control" required></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label>Phone</label>
-                        <input type="text" class="form-control" required />
-                    </div>
+                    @include('partials.admin.forms.add_user')
                 </div>
                 <div class="modal-footer">
                     <button
                         type="button"
-                        class="btn btn-secondary"
+                        class="btn btn-outline-secondary"
                         data-bs-dismiss="modal"
                     >
                         Close
-                    </button>
-                    <button type="button" class="btn btn-success">
-                        Save changes
                     </button>
                 </div>
             </div>
         </div>
     </div>
     <!-- Edit Modal HTML -->
-    <div id="editEmployeeModal" class="modal fade">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <form>
-                    <div class="modal-header">
-                        <h4 class="modal-title">Edit Employee</h4>
-                        <button
-                            type="button"
-                            class="close"
-                            data-dismiss="modal"
-                            aria-hidden="true"
-                        >
-                            &times;
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Email</label>
-                            <input type="email" class="form-control" required />
-                        </div>
-                        <div class="form-group">
-                            <label>Address</label>
-                            <textarea class="form-control" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Phone</label>
-                            <input type="text" class="form-control" required />
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <input
-                            type="button"
-                            class="btn btn-default"
-                            data-dismiss="modal"
-                            value="Cancel"
-                        />
-                        <input
-                            type="submit"
-                            class="btn btn-info"
-                            value="Save"
-                        />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
     <!-- Delete Modal HTML -->
     <div
         class="modal fade"
