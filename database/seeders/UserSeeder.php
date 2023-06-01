@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Carbon\Carbon;
 
 class UserSeeder extends Seeder
 {
@@ -25,6 +26,8 @@ class UserSeeder extends Seeder
             'is_admin' => true,
             'birth_date' => '1993-03-08',
             'password' => Hash::make('admin'),
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
         ]);
 
         // insert random users

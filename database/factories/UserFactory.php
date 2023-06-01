@@ -23,7 +23,7 @@ class UserFactory extends Factory
         return [
             'first_name' => $firstName,
             'last_name' => $lasttName,
-            'username' => fake()->unique()->text(10),
+            'username' => substr(fake()->userName(), 0, 10),
             'birth_date' => fake()->dateTimeBetween('1920-01-01', Carbon::now()),
             'is_admin' => false,
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
