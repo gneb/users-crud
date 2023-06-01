@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,14 @@ Route::group(['middleware' => ['guest']], function () {
     Route::post('/login', [AuthController::class, 'authenticate'])->name('authenticate');
  });
 
-Route::group(['middleware' => ['admin', 'auth']], function () {
-    Route::get('/admin', [AdminController::class, 'show'])->name('admin');
+ 
+
+Route::group(['middleware' => ['auth']], function () {
     Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::group(['middleware' => ['admin']], function () {
+        Route::get('/admin', [AdminController::class, 'show'])->name('admin');
+        Route::post('/users', [UserController::class, 'store'])->name('saveUser');
+    });
 });
+
