@@ -19,7 +19,13 @@
             >
                 Login
             </a>
-            @endguest @auth hello, <b>{{Auth::user()->username}} <a class="text-danger" href="{{url('logout?csrf=' . csrf_token())}}">logout</a>@endauth
+            @endguest 
+            @auth hello, <b>{{Auth::user()->username}} 
+                @if (Auth::user()->is_admin == 1)
+                    <a class="text-dark" href="{{url('admin')}}">Dashboard</a>
+                @endif
+                <a class="text-danger" href="{{url('logout?csrf=' . csrf_token())}}">logout</a>@endauth
+                
             </div></b>
     </header>
 </div>

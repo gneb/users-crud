@@ -9,3 +9,19 @@
     integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
     crossorigin="anonymous"
 ></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js"></script>
+<script>
+    //shortcut for $(document).ready
+    $(function () {
+        if (window.location.hash) {
+            var hash = window.location.hash;
+            $(hash).modal("toggle");
+        }
+        $(".datepicker").datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            useCurrent: false,
+            format: "yyyy-mm-dd",
+        });
+    });
+</script>
