@@ -15,6 +15,11 @@
                             placeholder="name@example.com"
                         />
                         <label for="floatingInput">Username</label>
+                        @if($errors->has('username'))
+                        <div class="text-danger">
+                            {{ $errors->first('username') }}
+                        </div>
+                        @endif
                     </div>
                     <div class="form-floating">
                         <input
@@ -25,6 +30,11 @@
                             placeholder="Password"
                         />
                         <label for="floatingPassword">Password</label>
+                        @if($errors->has('password'))
+                        <div class="text-danger">
+                            {{ $errors->first('password') }}
+                        </div>
+                        @endif
                     </div>
                     <input
                         class="btn btn-primary mt-2"

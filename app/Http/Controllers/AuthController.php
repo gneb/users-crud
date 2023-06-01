@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\View\View;
 use App\Http\Requests\LoginRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
 
 class AuthController extends Controller
 {
@@ -24,7 +25,7 @@ class AuthController extends Controller
             return redirect()->intended('admin');
         }
         return back()->withErrors([
-            'username' => 'The provided credentials do not match our records.',
+            'username' => 'Wrong credentials.',
         ])->onlyInput('username');
     }
 }
