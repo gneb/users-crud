@@ -1,6 +1,6 @@
 ## Simple users crud
 
-Simple users crud. in database will be one admin with credentials
+Simple users crud. in database will be one admin with credentials. admin can view,add,edit or delete all users. admin can't delete himself.
 
 ```
 username: admin
