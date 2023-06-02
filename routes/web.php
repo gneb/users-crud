@@ -32,6 +32,7 @@ Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['admin']], function () {
         Route::get('/admin', [AdminController::class, 'show'])->name('admin');
         Route::post('/users', [UserController::class, 'store'])->name('saveUser');
+        Route::put('/users/{id}', [UserController::class, 'update'])->name('editUser');
     });
 });
 

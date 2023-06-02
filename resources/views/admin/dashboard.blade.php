@@ -140,77 +140,7 @@
                         </div>
                     </div>
                 </div>
-                <div
-                    id="editEmployeeModal{{$user->id}}"
-                    class="modal fade"
-                    aria-labelledby="editEmployeeModal{{$user->id}}Label"
-                    aria-hidden="true"
-                    tabindex="-1"
-                >
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <form>
-                                <div class="modal-header">
-                                    <h4 class="modal-title">
-                                        Edit User: {{$user->username}}
-                                    </h4>
-                                    <button
-                                        type="button"
-                                        class="btn-close"
-                                        data-bs-dismiss="modal"
-                                        aria-label="Close"
-                                    ></button>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="form-group">
-                                        <label>Name</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            required
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input
-                                            type="email"
-                                            class="form-control"
-                                            required
-                                        />
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Address</label>
-                                        <textarea
-                                            class="form-control"
-                                            required
-                                        ></textarea>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Phone</label>
-                                        <input
-                                            type="text"
-                                            class="form-control"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div class="modal-footer">
-                                    <input
-                                        type="button"
-                                        class="btn btn-default"
-                                        data-dismiss="modal"
-                                        value="Cancel"
-                                    />
-                                    <input
-                                        type="submit"
-                                        class="btn btn-success"
-                                        value="Save"
-                                    />
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                @include('partials.admin.modals.edit_user', ['user' => $user])
                 @endforeach
             </tbody>
         </table>
@@ -218,44 +148,8 @@
     </div>
     <div class="table-responsive"></div>
 
-    <!-- Edit Modal HTML -->
-    <div
-        class="modal fade"
-        id="addUserModal"
-        tabindex="-1"
-        aria-labelledby="addUserModalLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addUserModalLabel">
-                        Add new user
-                    </h1>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    @include('partials.admin.forms.add_user')
-                </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-outline-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Edit Modal HTML -->
-    <!-- Delete Modal HTML -->
+    @include('partials.admin.modals.add_user')
+
     <div
         class="modal fade"
         id="deleteUserModal"

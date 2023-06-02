@@ -41,8 +41,6 @@
             name="username"
             id="floatingInput"
             placeholder="Username"
-            pattern="/^[a-z0-9._-]+$/"
-            title="Use lowercase alphabet characters, numbers, dots, underscores or dashes"
             value="{{ old('username') }}"
             autocomplete="one-time-code"
             required

@@ -1,4 +1,4 @@
-<form method="POST" action="/users" id="addNewUser">
+<form method="POST" action="/users/{{$user->id}}" id="addNewUser">
     @csrf
     @method('PUT')
     <div class="form-floating mb-3">
@@ -8,7 +8,7 @@
             name="first_name"
             id="floatingInput"
             placeholder="First Name"
-            value="{{ old('first_name') }}"
+            value="{{ old('first_name') ?? $user->first_name }}"
             required
         />
         <label for="floatingInput">First Name</label>
@@ -25,7 +25,7 @@
             name="last_name"
             id="floatingInput"
             placeholder="Last Name"
-            value="{{ old('last_name') }}"
+            value="{{ old('last_name') ?? $user->last_name }}"
             required
         />
         <label for="floatingInput">Last Name</label>
@@ -42,9 +42,7 @@
             name="username"
             id="floatingInput"
             placeholder="Username"
-            pattern="/^[a-z0-9._-]+$/"
-            title="Use lowercase alphabet characters, numbers, dots, underscores or dashes"
-            value="{{ old('username') }}"
+            value="{{ old('username') ?? $user->username }}"
             autocomplete="one-time-code"
             required
         />
@@ -62,7 +60,7 @@
             name="birth_date"
             id="floatingInput"
             placeholder="Birth date (optional)"
-            value="{{ old('birth_date') }}"
+            value="{{ old('birth_date') ?? $user->birth_date }}"
             readonly="readonly"
         />
         <label for="floatingInput">Birth date (optional)</label>
@@ -78,8 +76,8 @@
         style="font-size: 14px"
         aria-label="Default select example"
     >
-        <option {{ old('is_admin') == '0' ? 'selected' : '' }} value="0">User</option>
-        <option {{ old('is_admin') == '1' ? 'selected' : '' }} value="1">Admin</option>
+        <option {{ old('is_admin') ? (old('is_admin') == '1' ? 'selected' : '') : ($user->is_admin == '1' ? 'selected' : '') }} value="0">User</option>
+        <option {{ old('is_admin') ? (old('is_admin') == '1' ? 'selected' : '') : ($user->is_admin == '1' ? 'selected' : '') }} value="1">Admin</option>
     </select>
     @if($errors->has('is_admin'))
     <div class="text-danger">
@@ -93,9 +91,7 @@
             name="password"
             id="floatingInput"
             placeholder="password"
-            value="{{ old('password') }}"
-            required
-            minlength="6"
+            value="{{ old('password') ?? $user->password }}"
         />
         <label for="floatingInput">Password</label>
         @if($errors->has('password'))
@@ -104,5 +100,5 @@
         </div>
         @endif
     </div>
-    <button type="submit" class="btn btn-success float-end">Add</button>
+    <button type="submit" class="btn btn-success float-end">Update</button>
 </form>
