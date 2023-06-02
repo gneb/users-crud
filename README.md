@@ -1,6 +1,6 @@
 ## Simple users crud
 
-Simple users crud. in database will be one admin with credentials. admin can view,add,edit or delete all users. admin can't delete himself.
+Simple users crud. in database will be one admin with credentials. admin can view,add,edit or delete all users. admin can't delete himself. admin can change user role to `admin` or to `user`. only admin can view admin dashboard.
 
 ```
 username: admin
