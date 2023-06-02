@@ -14,6 +14,7 @@ and 50 users. passwords for all users will be:
 
 1. clone `master` repository
 2. cd to project directory
+2. run `composer install`
 3. run `./vendor/bin/sail up`
 4. run `./vendor/bin/sail artisan migrate`
 5. run `./vendor/bin/sail artisan db:seed`
