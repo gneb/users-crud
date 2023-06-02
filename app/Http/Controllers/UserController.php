@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\SaveUserRequest;
 use App\Http\Requests\EditUserRequest;
+use App\Http\Requests\DeleteUserRequest;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -37,5 +38,17 @@ class UserController extends Controller
             return redirect('admin');
         }
         return back()->with('error', 'User not updated');
+    }
+
+    public function delete(DeleteUserRequest $request): RedirectResponse
+    {
+        $data = $request->safe()->all();
+        // dd($data);
+        $result = User::whereIn('id', $request->input('ids'))->delete();
+        if ($result) {
+            session()->flash("success", "Users deleted");
+            return redirect('admin');
+        }
+        return back()->with('error', 'User not deleted');
     }
 }

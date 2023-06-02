@@ -19,6 +19,7 @@
                         ></i>
                     </a>
                     <a
+                        id="deleteSelectedUser"
                         data-bs-toggle="modal"
                         data-bs-target="#deleteUserModal"
                         class="btn btn-large btn-danger p-2"
@@ -55,11 +56,13 @@
                         <span class="custom-checkbox">
                             <input
                                 type="checkbox"
-                                id="checkbox1"
+                                id="checkbox{{$user->id}}"
                                 name="options[]"
                                 value="1"
+                                data-id="{{$user->id}}"
+                                data-name="{{Str::limit($user->first_name, 15) . Str::limit($user->last_name, 15)}}"
                             />
-                            <label for="checkbox1"></label>
+                            <label for="checkbox{{$user->id}}"></label>
                         </span>
                     </td>
                     <td>{{$user->id}}</td>
@@ -94,14 +97,18 @@
                             ></i
                         ></a>
                         <a
-                            href="#deleteUserModal"
-                            class="delete"
+                            class="delete deleteSingleUser"
                             data-toggle="modal"
+                            data-id="{{$user->id}}"
+                            data-name="{{Str::limit($user->first_name, 15) . ' ' . Str::limit($user->last_name, 15)}}"
+                            role="button"
                             ><i
                                 class="fa fa-trash fa-1x"
                                 aria-hidden="true"
                                 data-bs-toggle="tooltip"
                                 data-bs-placement="auto"
+                                data-id="{{$user->id}}"
+                                data-name="{{Str::limit($user->first_name, 15) . ' ' . Str::limit($user->last_name, 15)}}"
                                 title="Delete"
                             ></i
                         ></a>
@@ -117,47 +124,5 @@
     <div class="table-responsive"></div>
 
     @include('partials.admin.modals.add_user')
-
-    <div
-        class="modal fade"
-        id="deleteUserModal"
-        tabindex="-1"
-        aria-labelledby="deleteUserModalLabel"
-        aria-hidden="true"
-    >
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="deleteUserModalLabel">
-                        Delete user
-                    </h1>
-                    <button
-                        type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"
-                    ></button>
-                </div>
-                <div class="modal-body">
-                    Are you sure want to delete these user(s)?
-                    <ol class="list-group list-group-numbered">
-                        <li class="list-group-item border-0">
-                            Cras justo odio
-                        </li>
-                    </ol>
-                </div>
-                <div class="modal-footer">
-                    <button
-                        type="button"
-                        class="btn btn-secondary"
-                        data-bs-dismiss="modal"
-                    >
-                        Cancel
-                    </button>
-                    <button type="button" class="btn btn-danger">Delete</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    @endsection
+    @include('partials.admin.modals.delete_user') @endsection
 </div>
