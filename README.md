@@ -15,9 +15,10 @@ and 50 users. passwords for all users will be:
 1. clone `master` repository
 2. cd to project directory
 3. make copy of `.env.example` and reaname it to `.env`
-4. run `composer install`
-5. run `./vendor/bin/sail up --build`
-6. run `./vendor/bin/sail artisan migrate`
-7. run `./vendor/bin/sail artisan db:seed`
-8. open `localhost`
-9. login with admin credentials noted above
+4. set `DB_HOST` variable to `mysql` inside `.env` file.
+5. run `composer install`
+6. run `./vendor/bin/sail up --build`
+7. run `./vendor/bin/sail artisan migrate`
+8. run `./vendor/bin/sail artisan db:seed`
+9. open `localhost`
+10. login with admin credentials noted above
