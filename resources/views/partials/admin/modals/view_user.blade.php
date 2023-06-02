@@ -1,16 +1,13 @@
 <div
-    id="editUserModal{{$user->id}}"
     class="modal fade"
-    aria-labelledby="editUserModal{{$user->id}}Label"
-    aria-hidden="true"
+    id="viewUserModal{{$user->id}}"
     tabindex="-1"
+    aria-labelledby="viewUserModal{{$user->id}}Label"
+    aria-hidden="true"
 >
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="editUserModal">
-                    Update user: {{$user->username}}
-                </h1>
                 <button
                     type="button"
                     class="btn-close"
@@ -19,7 +16,7 @@
                 ></button>
             </div>
             <div class="modal-body">
-                @include('partials.admin.forms.edit_user', ['user' => $user])
+                @include('partials.public.user_card', ['user' => $user])
             </div>
             <div class="modal-footer">
                 <button

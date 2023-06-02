@@ -7,6 +7,11 @@ use Illuminate\Validation\Rule;
 
 class EditUserRequest extends FormRequest
 {
+
+    protected function getRedirectUrl()
+    {
+        return parent::getRedirectUrl() . '#editUserModal' . $this->route('id');
+    }
     /**
      * Determine if the user is authorized to make this request.
      */
